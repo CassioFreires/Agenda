@@ -1,0 +1,53 @@
+<%- include('includes/head')%>
+    <%- include('includes/nav')%>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8 mt-5">
+                    <h1 class="display-1 text-center">
+                        Agenda
+                    </h1>
+                    <p class="text-center lead">Seus contatos estão abaixo!</p>
+                    <%- include('includes/messages')%>
+
+                        <div class="responsive-table">
+                            <% if (data.length > 0) { %>
+                                <table class="table my-3 table table-dark table-striped  table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="col">Nome</th>
+                                            <th class="col">Sobrenome</th>
+                                            <th class="col">E-mail</th>
+                                            <th class="col" colspan="3">Telefone</th>
+                                        </tr>
+                                    </thead>
+                                    <% data.forEach((contato)=> { %>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <%= contato.nome %>
+                                                </td>
+                                                <td>
+                                                    <%= contato.sobrenome %>
+                                                </td>
+                                                <td>
+                                                    <%= contato.email %>
+                                                </td>
+                                                <td>
+                                                    <%= contato.telefone %>
+                                                </td>
+                                                <td><a href="/contato/index/<%= contato._id %>">Editar</a></td>
+                                                <td><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
+                                            </tr>
+                                        </tbody>
+                                        <% }) %>
+                                </table>
+                            <% } else { %>
+                                <p class="text-center lead">Não existem contatos na sua agenda</p>
+                            <% } %>
+                        </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+        <%- include('includes/footer')%>

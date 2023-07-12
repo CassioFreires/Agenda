@@ -1,0 +1,43 @@
+<%- include('includes/head')%>
+<%- include('includes/nav')%>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 mt-5">
+            <h1 class="display-1 text-center">
+                Agenda
+            </h1>
+            <p class="text-center lead">Crie ou edite seu contato abaixo.</p>
+            <%- include('includes/messages') %>
+           
+            <% if(data._id) { %>
+                <form action="/contato/edit/<%= data._id %>" method="POST">
+            <% } else { %>
+                <form action="/contato/register" method="POST">
+            <% } %> 
+                <div class="mb-3">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <label for="exampleInputEmail1" class="form-label">Nome</label>
+                    <input type="text" class="form-control" name="nome" value="<%= data.nome %>">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Sobrenome</label>
+                    <input type="text" class="form-control" name="sobrenome"value="<%= data.sobrenome %>">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" name="email"value="<%= data.email %>">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Telefone/Celular</label>
+                    <input type="text" class="form-control" name="telefone"value="<%= data.telefone %>">
+                </div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="/contato/index">Limpar os campos</a>
+            </form>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+<%- include('includes/footer')%>
